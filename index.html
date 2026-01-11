@@ -91,7 +91,7 @@
   <script src="https://portals-labs.github.io/portals-sdk/portals-sdk.js"></script>
   <script>
     function joinTeam(team) {
-      const taskName = team === 1 ? 'JoinBlueTeam' : 'JoinRedTeam';
+      const taskName = team === 1 ? 'TeamBlue' : 'TeamRed';
 
       PortalsSdk.sendMessageToUnity(JSON.stringify({
         TaskName: taskName,
