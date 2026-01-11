@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Selector</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: transparent;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    .teams {
+      display: flex;
+      gap: 16px;
+    }
+
+    .team-btn {
+      padding: 20px 40px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-transform: uppercase;
+    }
+
+    .team-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .team-btn:active {
+      transform: scale(0.98);
+    }
+
+    .blue {
+      background: linear-gradient(135deg, #1e90ff, #0066cc);
+      color: white;
+      box-shadow: 0 4px 15px rgba(30, 144, 255, 0.4);
+    }
+
+    .blue:hover {
+      box-shadow: 0 6px 20px rgba(30, 144, 255, 0.6);
+    }
+
+    .red {
+      background: linear-gradient(135deg, #ff4444, #cc0000);
+      color: white;
+      box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+    }
+
+    .red:hover {
+      box-shadow: 0 6px 20px rgba(255, 68, 68, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Choose Your Team</h1>
+    <div class="teams">
+      <button class="team-btn blue" onclick="joinTeam(1)">Blue Team</button>
+      <button class="team-btn red" onclick="joinTeam(2)">Red Team</button>
+    </div>
+  </div>
+
+  <script src="https://portals-labs.github.io/portals-sdk/portals-sdk.js"></script>
+  <script>
+    function joinTeam(team) {
+      const taskName = team === 1 ? 'JoinBlueTeam' : 'JoinRedTeam';
+
+      PortalsSdk.sendMessageToUnity(JSON.stringify({
+        TaskName: taskName,
+        TaskTargetState: 'SetNotActiveToCompleted'
+      }));
+
+      PortalsSdk.closeIframe();
+    }
+  </script>
+</body>
+</html>
