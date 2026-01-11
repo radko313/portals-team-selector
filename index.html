@@ -93,6 +93,13 @@
     function joinTeam(team) {
       const taskName = team === 1 ? 'TeamBlue' : 'TeamRed';
 
+      // Complete the ShowTeamSelector task
+      PortalsSdk.sendMessageToUnity(JSON.stringify({
+        TaskName: 'ShowTeamSelector',
+        TaskTargetState: 'SetActiveToCompleted'
+      }));
+
+      // Complete the team task
       PortalsSdk.sendMessageToUnity(JSON.stringify({
         TaskName: taskName,
         TaskTargetState: 'SetNotActiveToCompleted'

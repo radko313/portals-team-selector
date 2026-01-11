@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Team</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: transparent;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .hud {
+      background: linear-gradient(135deg, #ff4444, #cc0000);
+      padding: 8px 32px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(255, 68, 68, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .hud-text {
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="hud">
+    <span class="hud-text">Red</span>
+  </div>
+
+  <script src="https://portals-labs.github.io/portals-sdk/portals-sdk.js"></script>
+</body>
+</html>
