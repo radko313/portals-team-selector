@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team HUD</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: transparent;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .hud {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .hud.blue {
+      background: linear-gradient(135deg, #1e90ff, #0066cc);
+      color: white;
+      box-shadow: 0 2px 10px rgba(30, 144, 255, 0.5);
+    }
+
+    .hud.red {
+      background: linear-gradient(135deg, #ff4444, #cc0000);
+      color: white;
+      box-shadow: 0 2px 10px rgba(255, 68, 68, 0.5);
+    }
+
+    .hud.none {
+      background: rgba(0, 0, 0, 0.7);
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div id="teamHud" class="hud none">No Team</div>
+
+  <script src="https://portals-labs.github.io/portals-sdk/portals-sdk.js"></script>
+  <script>
+    const hud = document.getElementById('teamHud');
+
+    PortalsSdk.setMessageListener(function(message) {
+      let data = message;
+      if (typeof message === 'string') {
+        try {
+          data = JSON.parse(message);
+        } catch (e) {
+          return;
+        }
+      }
+
+      if (data.team !== undefined) {
+        updateTeam(data.team);
+      }
+    });
+
+    function updateTeam(team) {
+      hud.className = 'hud';
+
+      if (team === 1) {
+        hud.textContent = 'Blue Team';
+        hud.classList.add('blue');
+      } else if (team === 2) {
+        hud.textContent = 'Red Team';
+        hud.classList.add('red');
+      } else {
+        hud.textContent = 'No Team';
+        hud.classList.add('none');
+      }
+    }
+  </script>
+</body>
+</html>
